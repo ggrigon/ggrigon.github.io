@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilherme Rigon - Sysadmin</title>
+    <meta name="description" content="Sysadmin por profissão, curioso por natureza. Infraestrutura, automação, impressão 3D e projetos pessoais.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <style>
+        :root {
+            --primary: #22d3ee;
+            --primary-dark: #06b6d4;
+            --accent: #a855f7;
+            --bg: #0a0a0a;
+            --bg-card: #171717;
+            --bg-card-hover: #262626;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --border: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 24px;
+            border: 3px solid var(--border);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .interest {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .projects {
+            display: grid;
+            gap: 16px;
+        }
+
+        .project {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .project:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            border-radius: 12px;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .project-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .project-arrow {
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .project:hover .project-arrow {
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stack span {
+            padding: 6px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            color: var(--primary);
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 60px 0 40px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .project {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .project-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+
+    <header>
+        <div class="container">
+            <div class="avatar">👨‍💻</div>
+            <h1>Guilherme Rigon</h1>
+            <p class="tagline">Sysadmin</p>
+            <p class="bio">
+                Cuido de servidores, resolvo pepinos de email e garanto que sites fiquem no ar.
+                Nas horas vagas, automatizo coisas e mexo com impressão 3D.
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/ggrigon" title="GitHub" target="_blank">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2>Interesses</h2>
+                <div class="interests">
+                    <span class="interest">🖥️ Infraestrutura</span>
+                    <span class="interest">⚙️ Automação</span>
+                    <span class="interest">🖨️ Impressão 3D</span>
+                    <span class="interest">🤖 IA</span>
+                    <span class="interest">☀️ Energia Solar</span>
+                </div>
+
+                <h2>Stack</h2>
+                <div class="stack">
+                    <span>Linux</span>
+                    <span>cPanel/WHM</span>
+                    <span>Docker</span>
+                    <span>Python</span>
+                    <span>Bash</span>
+                    <span>Git</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Projetos</h2>
+                <div class="projects">
+                    <a href="https://github.com/ggrigon/claude-support-agents" class="project" target="_blank">
+                        <div class="project-icon">🤖</div>
+                        <div class="project-info">
+                            <div class="project-name">claude-support-agents</div>
+                            <div class="project-desc">Agentes de IA para suporte técnico cPanel/WHM usando Claude Code</div>
+                        </div>
+                        <div class="project-arrow">→</div>
+                    </a>
+                    <a href="https://github.com/ggrigon/Voron2.4" class="project" target="_blank">
+                        <div class="project-icon">🖨️</div>
+                        <div class="project-info">
+                            <div class="project-name">Voron2.4</div>
+                            <div class="project-desc">Arquivos de configuração da minha impressora Voron 2.4</div>
+                        </div>
+                        <div class="project-arrow">→</div>
+                    </a>
+                    <a href="https://github.com/ggrigon/gopro-photo-of-day" class="project" target="_blank">
+                        <div class="project-icon">📸</div>
+                        <div class="project-info">
+                            <div class="project-name">gopro-photo-of-day</div>
+                            <div class="project-desc">Script que baixa a foto do dia da GoPro e define como wallpaper</div>
+                        </div>
+                        <div class="project-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Feito com ☕ e <a href="https://claude.com/claude-code" target="_blank">Claude Code</a></p>
+        </div>
+    </footer>
+</body>
+</html>
